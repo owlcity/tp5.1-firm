@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>staff-demo1</title>
+</head>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<body>
+    <div class="container">
+        <div class="row">
+            <h3 class="text-center">登记表</h3>
+            <div class="col-md-8 col-md-offset-2">
+                <table class="table table-bordered table-hover text-center">
+                    <tr>
+                        <td>ID</td>
+                        <td>姓名</td>
+                        <td>性别</td>
+                        <td>年龄</td>
+                        <td>工资</td>
+                    </tr>
+                    {volist name="staffs" id="staff"}
+                    <tr>
+                        <td>volist{$staff.staff_id}</td>
+                        <td>{$staff.name}</td>
+                        <td>{//$staff.sex}
+
+                            {in name="staff.sex" value="0|1"}
+                                {if $staff.sex == 0}
+                                    男
+                                {else /}女
+                                
+                                {/if}
+                                
+                            {/in}
+                        </td>
+                        <td>{$staff.age}</td>
+                        <td>{$staff.salary}</td>
+                    </tr>
+                    {/volist}
+                 
+                </table>
+            </div>
+            <div class="text-center">
+                {$page|raw}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

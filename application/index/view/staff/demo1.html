@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>staff-demo1</title>
+</head>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<body>
+    <div class="container">
+        <div class="row">
+            <h3 class="text-center">登记表</h3>
+            <div class="col-md-8 col-md-offset-2">
+                <table class="table table-bordered table-hover text-center">
+                    <tr>
+                        <td>ID</td>
+                        <td>姓名</td>
+                        <td>性别</td>
+                        <td>年龄</td>
+                        <td>工资</td>
+                    </tr>
+                    <!-- 当前模板中创建变量 -->
+                    {//assign name="staffs" value=":app\index\model\Staff::all()"}
+                     <!-- 助手函数获取变量 -->
+                    {//assign name="staffs" value=":model('staff')::all()"}
+
+                    {//foreach $staffs as $staff} 
+                    {// volist name="staffs" id="staff" offset="3" length="5" mod="2" empty="当前数据为空"}
+                    {empty name="staffs"}
+                        <h2>当前数据为空</h2>
+                        {else /}
+                        {volist name="staffs" id="staff" offset="3" length="5" mod="2"}
+                        <!-- 输出偶数行记录 -->
+                        {eq name="mod" value="0"}
+                        <tr>
+                            <td>volist{$staff.staff_id}</td>
+                            <td>{$staff.name}</td>
+                            <td>{$staff.sex}</td>
+                            <td>{$staff.age}</td>
+                            <td>{$staff.salary}</td>
+                        </tr>
+                        {/eq}
+                        {/volist}
+                    {/empty}
+                    {//foreach}
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
